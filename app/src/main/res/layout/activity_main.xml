@@ -67,4 +67,74 @@
         app:layout_constraintTop_toBottomOf="@id/barrierTop"
         tools:text="@sample/posts.json/data/content" />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="content" />
+
+    <ImageButton
+        android:id="@+id/liked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_spacing"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/description_post_liked"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrierBottom" />
+
+    <TextView
+        android:id="@+id/likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/attr_spacing"
+        app:layout_constraintBottom_toBottomOf="@id/liked"
+        app:layout_constraintStart_toEndOf="@id/liked"
+        app:layout_constraintTop_toTopOf="@id/liked"
+        tools:text="@sample/posts.json/data/likes" />
+
+    <ImageButton
+        android:id="@+id/shared"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_spacing"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/description_post_shared"
+        android:src="@drawable/ic_baseline_share_24"
+        app:layout_constraintBottom_toBottomOf="@id/likes"
+        app:layout_constraintStart_toEndOf="@id/likes"
+        app:layout_constraintTop_toTopOf="@id/likes" />
+
+    <TextView
+        android:id="@+id/shares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/attr_spacing"
+        app:layout_constraintBottom_toBottomOf="@id/shared"
+        app:layout_constraintStart_toEndOf="@id/shared"
+        app:layout_constraintTop_toTopOf="@id/shared"
+        tools:text="@sample/posts.json/data/shares" />
+
+    <TextView
+        android:id="@+id/views"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/attr_spacing"
+        app:layout_constraintBottom_toBottomOf="@id/shares"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/shares"
+        tools:text="@sample/posts.json/data/views" />
+
+    <ImageView
+        android:id="@+id/viewed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_visibility_24"
+        app:layout_constraintBottom_toBottomOf="@id/views"
+        app:layout_constraintEnd_toStartOf="@id/views"
+        app:layout_constraintTop_toTopOf="@id/views"
+        android:contentDescription="@string/description_post_viewed" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
