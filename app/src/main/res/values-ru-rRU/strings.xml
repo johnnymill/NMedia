@@ -7,4 +7,9 @@
     <string name="description_post_liked">Добавить в избранное</string>
     <string name="description_post_shared">Поделиться</string>
     <string name="description_post_viewed">Количество просмотров</string>
+    <string name="post_text">Введите текст</string>
+    <string name="description_post_edit_save">Сохранить отредактированный пост</string>
+    <string name="menu_edit">Редактировать</string>
+    <string name="menu_remove">Удалить</string>
+    <string name="error_empty_content">Контент не может быть пустым</string>
 </resources>
