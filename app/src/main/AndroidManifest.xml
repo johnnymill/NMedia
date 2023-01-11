@@ -36,6 +36,9 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.EditPostActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
