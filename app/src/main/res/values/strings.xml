@@ -6,13 +6,11 @@
     <string name="description_post_liked">Add to favorite</string>
     <string name="description_post_shared">Share</string>
     <string name="description_post_viewed">Views quantity</string>
+    <string name="description_post_add">Add post</string>
+    <string name="description_post_save">Save post</string>
     <string name="post_text">Enter your text</string>
-    <string name="description_post_edit_save">Save edited post</string>
-    <string name="description_post_edit_cancel">Discard post changes</string>
-    <string name="description_post_edit_icon">Post edit icon</string>
     <string name="menu_edit">Edit</string>
     <string name="menu_remove">Remove</string>
     <string name="error_empty_content">Content cannot be empty</string>
-    <string name="edit_post_title">Edit post</string>
     <string name="chooser_share_post">Share post</string>
 </resources>
