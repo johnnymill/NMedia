@@ -15,7 +15,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             liked = false,
             likes = 0,
             shares = 0,
-            views = 0
+            views = 0,
+            videoUrl = null
         ),
         Post(
             id = nextId++,
@@ -25,7 +26,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             liked = false,
             likes = 0,
             shares = 0,
-            views = 0
+            views = 0,
+            videoUrl = null
         ),
         Post(
             id = nextId++,
@@ -35,7 +37,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             liked = false,
             likes = 0,
             shares = 0,
-            views = 0
+            views = 0,
+            videoUrl = null
         ),
         Post(
             id = nextId++,
@@ -45,7 +48,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             liked = false,
             likes = 0,
             shares = 0,
-            views = 0
+            views = 0,
+            videoUrl = null
         ),
         Post(
             id = nextId++,
@@ -55,7 +59,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             liked = false,
             likes = 999_999,
             shares = 0,
-            views = 0
+            views = 0,
+            videoUrl = null
         ),
         Post(
             id = nextId++,
@@ -65,7 +70,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             liked = false,
             likes = 9_999,
             shares = 0,
-            views = 0
+            views = 0,
+            videoUrl = "https://www.youtube.com/watch?v=WhWc3b3KhnY"
         ),
         Post(
             id = nextId++,
@@ -75,7 +81,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             liked = true,
             likes = 1,
             shares = 0,
-            views = 0
+            views = 0,
+            videoUrl = null
         ),
         Post(
             id = nextId++,
@@ -85,7 +92,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             liked = false,
             likes = 0,
             shares = 0,
-            views = 0
+            views = 0,
+            videoUrl = "https://www.youtube.com/watch?v=t_S_cN2re4g"
         ),
         Post(
             id = nextId++,
@@ -95,7 +103,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             liked = false,
             likes = 999,
             shares = 5_099,
-            views = 999
+            views = 999,
+            videoUrl = null
         ),
     ).reversed()
 

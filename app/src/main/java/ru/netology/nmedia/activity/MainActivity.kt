@@ -1,9 +1,12 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
@@ -50,6 +53,27 @@ class MainActivity : AppCompatActivity() {
                     Intent.createChooser(intent, getString(R.string.chooser_share_post))
                 startActivity(shareIntent)
                 viewModel.share(post.id)
+            }
+
+            override fun onPlay(post: Post) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.videoUrl))
+                if (intent.resolveActivity(packageManager) == null) {
+                    Snackbar.make(
+                        binding.root, getString(R.string.error_no_activity_to_open_media),
+                        BaseTransientBottomBar.LENGTH_SHORT
+                    ).show()
+                    return
+                }
+//                if (packageManager.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER)
+//                        .isEmpty()
+//                ) {
+//                    Snackbar.make(
+//                        binding.root, getString(R.string.error_no_activity_to_open_media),
+//                        BaseTransientBottomBar.LENGTH_SHORT
+//                    ).show()
+//                    return
+//                }
+                startActivity(intent)
             }
         })
 
