@@ -14,4 +14,7 @@
     <string name="menu_remove">Удалить</string>
     <string name="error_empty_content">Контент не может быть пустым</string>
     <string name="chooser_share_post">Share post</string>
+    <string name="video_preview">Обложка видео</string>
+    <string name="playback_video">Воспроизвести видео</string>
+    <string name="error_no_activity_to_open_media">Не найдено приложение для воспроизведения</string>
 </resources>
