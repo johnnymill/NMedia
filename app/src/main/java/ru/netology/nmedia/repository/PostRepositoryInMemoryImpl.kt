@@ -1,9 +1,8 @@
 package ru.netology.nmedia.repository
 
-import androidx.lifecycle.LiveData
 import ru.netology.nmedia.dto.Post
 
-class PostRepositoryInMemoryImpl : PostRepository {
+class PostRepositoryInMemoryImpl : PostInternal() {
     private var postsInitial = listOf(
         Post(
             id = 0,
@@ -107,27 +106,11 @@ class PostRepositoryInMemoryImpl : PostRepository {
     )
 
     init {
-        PostInternal.actualizeNextId()
+        actualizeNextId()
         postsInitial.forEach {
-            PostInternal.add(it)
+            add(it)
         }
     }
 
-    override fun getAll(): LiveData<List<Post>> = PostInternal.data
-
-    override fun save(post: Post) {
-        PostInternal.update(post)
-    }
-
-    override fun remove(id: Long) {
-        PostInternal.remove(id)
-    }
-
-    override fun like(id: Long) {
-        PostInternal.like(id)
-    }
-
-    override fun share(id: Long) {
-        PostInternal.share(id)
-    }
+    override fun sync() {}
 }
