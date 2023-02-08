@@ -3,35 +3,49 @@ package ru.netology.nmedia.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
+import ru.netology.nmedia.activity.EditPostFragment.Companion.textArg
 import ru.netology.nmedia.adapter.OnInteractionListener
 import ru.netology.nmedia.adapter.PostsAdapter
-import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+class FeedFragment : Fragment() {
 
-        val viewModel: PostViewModel by viewModels()
+    private var _binding: FragmentFeedBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding: FragmentFeedBinding
+        get() = _binding!!
 
-        val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.changeContent(result)
-            viewModel.save()
-        }
+    private val viewModel: PostViewModel by viewModels(
+        ownerProducer = ::requireParentFragment
+    )
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentFeedBinding.inflate(inflater, container, false)
 
         val adapter = PostsAdapter(object : OnInteractionListener {
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
-                editPostLauncher.launch(post.content)
+                findNavController().navigate(
+                    R.id.action_feedFragment_to_editPostFragment,
+                    Bundle().apply {
+                        textArg = post.content
+                    }
+                )
             }
 
             override fun onRemove(post: Post) {
@@ -57,14 +71,14 @@ class MainActivity : AppCompatActivity() {
 
             override fun onPlay(post: Post) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.videoUrl))
-                if (intent.resolveActivity(packageManager) == null) {
+                if (intent.resolveActivity(requireActivity().packageManager) == null) {
                     Snackbar.make(
                         binding.root, getString(R.string.error_no_activity_to_open_media),
                         BaseTransientBottomBar.LENGTH_SHORT
                     ).show()
                     return
                 }
-//                if (packageManager.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER)
+//                if (requireActivity().packageManager.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER)
 //                        .isEmpty()
 //                ) {
 //                    Snackbar.make(
@@ -78,12 +92,19 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.list.adapter = adapter
-        viewModel.data.observe(this) { posts ->
+        viewModel.data.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
         }
 
         binding.fab.setOnClickListener {
-            editPostLauncher.launch(null)
+            findNavController().navigate(R.id.action_feedFragment_to_editPostFragment)
         }
+
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
