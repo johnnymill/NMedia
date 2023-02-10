@@ -18,6 +18,7 @@ interface OnInteractionListener {
     fun onLike(post: Post) {}
     fun onShare(post: Post) {}
     fun onPlay(post: Post) {}
+    fun onView(post: Post) {}
 }
 
 class PostsAdapter(
@@ -94,6 +95,22 @@ class PostViewHolder(
                 fabVideoPlayback.setOnClickListener {
                     onInteractionListener.onPlay(post)
                 }
+            }
+
+            avatar.setOnClickListener {
+                onInteractionListener.onView(post)
+            }
+
+            author.setOnClickListener {
+                onInteractionListener.onView(post)
+            }
+
+            published.setOnClickListener {
+                onInteractionListener.onView(post)
+            }
+
+            content.setOnClickListener {
+                onInteractionListener.onView(post)
             }
         }
     }
