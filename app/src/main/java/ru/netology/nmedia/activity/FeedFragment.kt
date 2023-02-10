@@ -89,6 +89,14 @@ class FeedFragment : Fragment() {
 //                }
                 startActivity(intent)
             }
+
+            override fun onView(post: Post) {
+                findNavController().navigate(
+                    R.id.action_feedFragment_to_postFragment,
+                    Bundle().apply {
+                        textArg = post.id.toString()
+                    })
+            }
         })
 
         binding.list.adapter = adapter
