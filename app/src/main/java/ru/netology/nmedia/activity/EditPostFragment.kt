@@ -20,6 +20,11 @@ class EditPostFragment : Fragment() {
         var Bundle.textArg: String? by HelperStringArg
     }
 
+    private var _binding: FragmentEditPostBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding: FragmentEditPostBinding
+        get() = _binding!!
+
     private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
@@ -29,11 +34,13 @@ class EditPostFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentEditPostBinding.inflate(
-            inflater,
-            container,
-            false
-        )
+        _binding = FragmentEditPostBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.edit.requestFocus()
 
@@ -50,7 +57,10 @@ class EditPostFragment : Fragment() {
                 findNavController().navigateUp()
             }
         }
+    }
 
-        return binding.root
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
