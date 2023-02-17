@@ -105,6 +105,7 @@ class FeedFragment : Fragment() {
         }
 
         binding.fab.setOnClickListener {
+            viewModel.edit()
             findNavController().navigate(R.id.action_feedFragment_to_editPostFragment)
         }
 
