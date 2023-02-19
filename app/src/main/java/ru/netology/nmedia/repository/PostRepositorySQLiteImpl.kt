@@ -1,42 +1,30 @@
 package ru.netology.nmedia.repository
 
+import androidx.lifecycle.Transformations
 import ru.netology.nmedia.dao.PostDao
 import ru.netology.nmedia.dto.Post
+import ru.netology.nmedia.entity.PostEntity
 
 class PostRepositorySQLiteImpl(
     private val dao: PostDao
-) : PostInternal() {
-
-    init {
-        posts = dao.getAll()
+) : PostRepository {
+    override fun getAll() = Transformations.map(dao.getAll()) { list ->
+        list.map { it.toDto() }
     }
 
     override fun save(post: Post) {
-        val id = post.id
-        val saved = dao.save(post)
-        posts = if (id == 0L) {
-            listOf(saved) + posts
-        } else {
-            posts.map {
-                if (it.id != id) it else saved
-            }
-        }
+        dao.save(PostEntity.fromDto(post))
     }
 
     override fun remove(id: Long) {
         dao.remove(id)
-        super.remove(id)
     }
 
     override fun like(id: Long) {
         dao.like(id)
-        super.like(id)
     }
 
     override fun share(id: Long) {
         dao.share(id)
-        super.share(id)
     }
-
-    override fun sync() {}
 }
