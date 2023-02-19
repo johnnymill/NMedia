@@ -94,6 +94,7 @@ class PostFragment : Fragment() {
                                 true
                             }
                             R.id.remove -> {
+                                viewModel.data.removeObservers(viewLifecycleOwner)
                                 viewModel.remove(post.id)
                                 findNavController().navigateUp()
                                 true
