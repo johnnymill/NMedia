@@ -10,8 +10,8 @@ import ru.netology.nmedia.repository.*
 private val empty = Post(
     id = 0,
     content = "",
-    author = "",
-    published = "",
+    author = "Me",
+    published = "now",
     liked = false,
     likes = 0,
     shares = 0,
@@ -24,7 +24,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 //    private val repository: PostRepository = PostRepositorySharedPrefsImpl(application)
 //    private val repository: PostRepository = PostRepositoryFileImpl(application)
     private val repository: PostRepository = PostRepositorySQLiteImpl(
-        AppDb.getInstance(application).postDao
+        AppDb.getInstance(context = application).postDao()
     )
     private val edited = MutableLiveData(empty)
     val data = repository.getAll()
