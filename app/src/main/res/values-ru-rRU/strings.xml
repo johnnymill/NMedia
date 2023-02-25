@@ -19,6 +19,7 @@
     <string name="error_no_activity_to_open_media">Не найдено приложение для воспроизведения</string>
     <string name="google_play_unavailable">Google Api Недоступно</string>
     <string name="notification_user_liked">%1$s поставил лайк посту %2$s</string>
+    <string name="notification_user_posted">%1$s опубликовал новый пост</string>
     <string name="channel_remote_name">Уведомления с сервера NMedia</string>
     <string name="channel_remote_description">Уведомления с удалённого NMedia сервера</string>
 
